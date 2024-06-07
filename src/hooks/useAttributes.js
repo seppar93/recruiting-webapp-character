@@ -1,12 +1,11 @@
 import { useReducer, useCallback } from "react";
 import { ATTRIBUTE_LIST } from "../consts.js";
 
-const initialState = ATTRIBUTE_LIST.reduce((acc, attr) => {
-  acc[attr] = 10;
-  return acc;
-}, {});
-
-console.log('initialState =>', initialState);
+const initializeState = (initialAttributes) =>
+  ATTRIBUTE_LIST.reduce((acc, attr) => {
+    acc[attr] = initialAttributes[attr] || 10;
+    return acc;
+  }, {});
 
 const attributeReducer = (state, action) => {
   switch (action.type) {
@@ -19,10 +18,12 @@ const attributeReducer = (state, action) => {
   }
 };
 
-export const useAttributes = () => {
-  const [attributes, dispatch] = useReducer(attributeReducer, initialState);
-
-  console.log('attributes =>', attributes);
+export const useAttributes = (initialAttributes) => {
+  const [attributes, dispatch] = useReducer(
+    attributeReducer,
+    initialAttributes,
+    initializeState
+  );
 
   const increment = useCallback(
     (attribute) => dispatch({ type: "increment", attribute }),
