@@ -4,6 +4,7 @@ import { CLASS_LIST } from "../consts.js";
 
 import PropTypes from "prop-types";
 
+// check for when attributes meet a class
 const Classes = ({ attributes }) => {
   const checkClassRequirements = (minAttributes) =>
     Object.entries(minAttributes).every(

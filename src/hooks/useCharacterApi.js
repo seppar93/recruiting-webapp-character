@@ -1,10 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+// env file used to to not hardcode data or vulnerable values like keys 
 const githubUsername = process.env.REACT_APP_GITHUB_USERNAME;
 
 const fetchCharacter = async () => {
   const response = await fetch(`https://recruiting.verylongdomaintotestwith.ca/api/${githubUsername}/character`);
-  console.log('Response =>', response)
   return response.json();
 };
 
@@ -20,6 +20,7 @@ const saveCharacter = async (characters) => {
 };
 
 export const useCharacterApi = () => {
+    // choose reactQuery for the built in cache to reduce redundant calls 
   const queryClient = useQueryClient();
 
   const { data, isLoading, error } = useQuery({

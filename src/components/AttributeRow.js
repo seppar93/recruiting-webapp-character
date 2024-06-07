@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
+// UI component
 const AttributeRow = ({ name, value, modifier, increment, decrement }) => (
   <div className="flex items-center mb-4">
     <span className="w-32">
       {name}: {value} (Modifier: {modifier})
     </span>
-    <button className="bg-gray-500 px-2 py-1 mx-2" onClick={decrement}>
+    <button className="bg-gray-200 px-2 py-1 mx-2" onClick={decrement}>
       -
     </button>
-    <button className="bg-gray-500 px-2 py-1 mx-2" onClick={increment}>
+    <button className="bg-gray-200 px-2 py-1 mx-2" onClick={increment}>
       +
     </button>
   </div>
