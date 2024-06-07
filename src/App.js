@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import './App.css';
+import './styles/App.css';
+
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
 
 
