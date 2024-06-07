@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import './styles/App.css';
 
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
+import { useCharacterApi } from './hooks/useCharacterApi';
 
 
 function App() {
-  const [num, setNum] = useState(0);
+  const [characters, setCharacters] = useState([]);
+  const { characters: fetchedCharacters, isLoading, error, saveCharacter } = useCharacterApi();
+
+  useEffect(() => {
+    if (fetchedCharacters) {
+      setCharacters(fetchedCharacters);
+    }
+  }, [fetchedCharacters]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -13,10 +22,7 @@ function App() {
       </header>
       <section className="App-section">
         <div>
-          Value:
-          {num}
-          <button>+</button>
-          <button>-</button>
+          {fetchedCharacters.message}
         </div>
       </section>
     </div>
